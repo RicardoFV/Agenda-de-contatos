@@ -20,16 +20,15 @@ public class ContatoPersistencia implements Crud {
     public Contato contato;
 
     public ContatoPersistencia() throws InstantiationException, IllegalAccessException {
-        conexao = Conexao.getConexao();
+        this.conexao = Conexao.getConexao();
     }
 
     @Override
     public Object cadastrar(Object objeto) {
-        this.contato = (Contato) objeto;
-
         try {
+             this.contato = (Contato) objeto;
 
-            PreparedStatement ps = conexao.prepareStatement("insert into contatos (nome, telefone, email) values(?,?,?)");
+            PreparedStatement ps = this.conexao.prepareStatement("insert into contatos (nome, telefone, email) values(?,?,?)");
             ps.setString(1, this.contato.getNome());
             ps.setString(2, this.contato.getTelofone());
             ps.setString(3, this.contato.getEmail());
@@ -52,10 +51,10 @@ public class ContatoPersistencia implements Crud {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                contato.setId(rs.getInt("id"));
-                contato.setNome(rs.getString("nome"));
-                contato.setEmail(rs.getString("email"));
-                contato.setTelofone(rs.getString("telefone"));
+                this.contato.setId(rs.getInt("id"));
+                this.contato.setNome(rs.getString("nome"));
+                this.contato.setEmail(rs.getString("email"));
+                this.contato.setTelofone(rs.getString("telefone"));
             }
 
             return contato;
@@ -69,7 +68,7 @@ public class ContatoPersistencia implements Crud {
     public void deletar(int id) {
         try {
             PreparedStatement ps
-                    = conexao.prepareStatement("DELETE FROM contatos WHERE id =?");
+                    = this.conexao.prepareStatement("DELETE FROM contatos WHERE id =?");
             ps.setInt(1, id);
             ps.executeUpdate();
 
@@ -79,8 +78,22 @@ public class ContatoPersistencia implements Crud {
     }
 
     @Override
-    public void atualizar(Object objeto, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object atualizar(Object objeto, int id) {
+        try{
+            this.contato = (Contato) objeto;
+            
+            PreparedStatement ps = this.conexao.prepareStatement("update contatos set nome =?, telefone =?, email=? where id = ?");
+            ps.setString(1, this.contato.getNome());
+            ps.setString(2, this.contato.getTelofone());
+            ps.setString(3, this.contato.getEmail());
+            ps.setInt(4, id);
+            
+            ps.executeUpdate();
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return this.contato;
     }
 
     @Override

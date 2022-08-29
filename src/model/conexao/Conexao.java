@@ -14,27 +14,27 @@ import java.sql.SQLException;
  * @author Ricardo
  */
 public class Conexao {
-    
-    
-      private static Connection conexao = null;
+
+    private static Connection conexao = null;
 
     public static Connection getConexao() {
-        if (conexao != null)
-            return conexao;
-        else {
-            try {
-                String driver = "org.postgresql.Driver";
-                String url = "jdbc:postgresql://localhost:5433/agenda";
-                String user = "postgres";
-                String password = "1234";
-                Class.forName(driver);
-                conexao = DriverManager.getConnection(url, user, password);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        if (conexao != null) {
             return conexao;
         }
+
+        try {
+            String driver = "org.postgresql.Driver";
+            String url = "jdbc:postgresql://localhost:5433/agenda";
+            String user = "postgres";
+            String password = "1234";
+            Class.forName(driver);
+            conexao = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conexao;
+
     }
 }
