@@ -20,3 +20,7 @@ A arquitetura do do projeto foram usado os seguintes padrões de projetos
 Após baixar o projeto,basta ir na pasta do projeto (model.conexão) e configurar com os dados que são do seu banco de dados.
 
 ## Imagens do Projeto
+
+![img1](https://user-images.githubusercontent.com/48629398/187532573-99c4184b-f4a4-416a-a8fe-df7b4989ae72.PNG)
+![img2](https://user-images.githubusercontent.com/48629398/187532576-93b1c1f7-1194-4388-bfbb-cc477f1c65a0.PNG)
+![tela1](https://user-images.githubusercontent.com/48629398/187532578-36a62ea5-77b6-4a5f-b5ec-853d2a2e39f6.PNG)
