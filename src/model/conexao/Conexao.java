@@ -15,7 +15,12 @@ import java.sql.SQLException;
  */
 public class Conexao {
 
+    // criando as variaveis de conexao
     private static Connection conexao = null;
+    private static final String DRIVER = "org.postgresql.Driver";
+    private static final String URL = "jdbc:postgresql://localhost:5433/agenda";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "1234";
 
     public static Connection getConexao() {
         if (conexao != null) {
@@ -23,12 +28,8 @@ public class Conexao {
         }
 
         try {
-            String driver = "org.postgresql.Driver";
-            String url = "jdbc:postgresql://localhost:5433/agenda";
-            String user = "postgres";
-            String password = "1234";
-            Class.forName(driver);
-            conexao = DriverManager.getConnection(url, user, password);
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -29,6 +29,8 @@ public class Principal extends javax.swing.JFrame {
         this.controller = new ContatoController();
         this.contato = new Contato();
         initComponents();
+        // campos e botoes que viram desativado
+        btexcluir.setEnabled(false);
         txtidcontato.setEnabled(false);
         // carrega o sistema ja com os dados
         PreencherTabela();
@@ -50,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtnome = new javax.swing.JTextField();
         txtemail = new javax.swing.JTextField();
-        btsalvar = new javax.swing.JButton();
+        btadionar = new javax.swing.JButton();
         txttelefone = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         txtidpesquisa = new javax.swing.JTextField();
@@ -58,6 +60,8 @@ public class Principal extends javax.swing.JFrame {
         txtidcontato = new javax.swing.JTextField();
         btpesquisar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btexcluir = new javax.swing.JButton();
+        btlimparcampos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tcontatos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -65,8 +69,10 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(610, 658));
+        setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(650, 678));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Contato"));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -75,10 +81,10 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("NOME :");
 
-        btsalvar.setText("Salvar");
-        btsalvar.addActionListener(new java.awt.event.ActionListener() {
+        btadionar.setText("Adiocionar");
+        btadionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btsalvarActionPerformed(evt);
+                btadionarActionPerformed(evt);
             }
         });
 
@@ -104,6 +110,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("CELULAR :");
 
+        btexcluir.setText("Excluir");
+        btexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btexcluirActionPerformed(evt);
+            }
+        });
+
+        btlimparcampos.setText("Limpar Campos");
+        btlimparcampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlimparcamposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,24 +141,33 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(txtidpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btlimparcampos, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtidcontato, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(94, Short.MAX_VALUE))))
+                            .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btadionar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtidpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btlimparcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtidcontato, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,8 +185,10 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(29, 29, 29)
-                .addComponent(btsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btadionar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
 
         tcontatos.setModel(new javax.swing.table.DefaultTableModel(
@@ -187,65 +218,98 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 19, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(5, 5, 5)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalvarActionPerformed
+    private void btadionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btadionarActionPerformed
         // verifica se os campos estao preenchidos
         if (this.validarCampos()) {
-            // recebe as  informaçoes
-            this.contato.setNome(txtnome.getText());
-            this.contato.setEmail(txtemail.getText());
-            this.contato.setTelofone(txttelefone.getText());
+            // veriica se o campo id esta vazio
+            if (txtidcontato.getText().trim().isEmpty()) {
+                this.contato.setId(0);
+                this.contato.setNome(txtnome.getText());
+                this.contato.setEmail(txtemail.getText());
+                this.contato.setTelofone(txttelefone.getText());
+
+            } else {
+                // caso venha preenchido o objeto recebe o valor
+                this.contato.setId(Integer.parseInt(txtidcontato.getText()));
+                this.contato.setNome(txtnome.getText());
+                this.contato.setEmail(txtemail.getText());
+                this.contato.setTelofone(txttelefone.getText());
+            }
             // chama a controller passando os dados
             this.controller.Cadastrar(this.contato);
             // limpa os campos
             this.limparCampos();
+            // preenche a tabela
             this.PreencherTabela();
-            JOptionPane.showMessageDialog(null, "Sucesso ao Cadastrar !");
         }
 
-
-    }//GEN-LAST:event_btsalvarActionPerformed
+    }//GEN-LAST:event_btadionarActionPerformed
 
     private void btpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpesquisarActionPerformed
         // consulta um contato por id
         int id = Integer.parseInt(txtidpesquisa.getText().trim());
         // veriifca se o numero é maior que 0
         if (this.controller.consultar(id).getId() > 0) {
+            // modifica o nome do botao
+            btadionar.setLabel("Atualizar");
+            // ativa o botao excluir
+            btexcluir.setEnabled(true);
             txtidcontato.setText(Integer.toString(this.controller.consultar(id).getId()));
             txtnome.setText(this.controller.consultar(id).getNome());
             txttelefone.setText(this.controller.consultar(id).getTelofone());
             txtemail.setText(this.controller.consultar(id).getEmail());
         }
-
-
     }//GEN-LAST:event_btpesquisarActionPerformed
+
+    private void btexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btexcluirActionPerformed
+        // consulta um contato por id
+        int id = Integer.parseInt(txtidpesquisa.getText().trim());
+        // veriica se o numero é maior que 0
+        if (id > 0) {
+            this.controller.deletar(id);
+            // chama o preencher tabela
+            this.PreencherTabela();
+            // limpar campos
+            btadionar.setLabel("Adicionar");
+            btexcluir.setEnabled(false);
+            limparCampos();
+        }
+    }//GEN-LAST:event_btexcluirActionPerformed
+    // botão responsavel por limpar todos os campos
+    private void btlimparcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparcamposActionPerformed
+
+        btadionar.setLabel("Adicionar");
+        btexcluir.setEnabled(false);
+        limparCampos();
+
+    }//GEN-LAST:event_btlimparcamposActionPerformed
     // limpa os dados preenchidos
     private void limparCampos() {
+        txtidpesquisa.setText("");
+        txtidcontato.setText("");
         txtnome.setText("");
         txtemail.setText("");
         txttelefone.setText("");
@@ -332,8 +396,10 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btadionar;
+    private javax.swing.JButton btexcluir;
+    private javax.swing.JButton btlimparcampos;
     private javax.swing.JButton btpesquisar;
-    private javax.swing.JButton btsalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
