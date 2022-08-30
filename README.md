@@ -18,3 +18,5 @@ A arquitetura do do projeto foram usado os seguintes padrões de projetos
 ## Configurações
 
 Após baixar o projeto,basta ir na pasta do projeto (model.conexão) e configurar com os dados que são do seu banco de dados.
+
+## Imagens do Projeto
