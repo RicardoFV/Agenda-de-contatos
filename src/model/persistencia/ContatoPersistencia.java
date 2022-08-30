@@ -26,7 +26,7 @@ public class ContatoPersistencia implements Crud {
     @Override
     public Object cadastrar(Object objeto) {
         try {
-             this.contato = (Contato) objeto;
+            this.contato = (Contato) objeto;
 
             PreparedStatement ps = this.conexao.prepareStatement("insert into contatos (nome, telefone, email) values(?,?,?)");
             ps.setString(1, this.contato.getNome());
@@ -46,18 +46,19 @@ public class ContatoPersistencia implements Crud {
 
         try {
 
-            PreparedStatement ps = conexao.prepareStatement("select * from contatos where id =?");
+            PreparedStatement ps = this.conexao.prepareStatement("select * from contatos where id =?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            Contato contatoAdd = new Contato();
             while (rs.next()) {
-                this.contato.setId(rs.getInt("id"));
-                this.contato.setNome(rs.getString("nome"));
-                this.contato.setEmail(rs.getString("email"));
-                this.contato.setTelofone(rs.getString("telefone"));
-            }
 
-            return contato;
+                contatoAdd.setId(rs.getInt("id"));
+                contatoAdd.setNome(rs.getString("nome"));
+                contatoAdd.setEmail(rs.getString("email"));
+                contatoAdd.setTelofone(rs.getString("telefone"));
+            }
+            return contatoAdd;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -78,26 +79,26 @@ public class ContatoPersistencia implements Crud {
     }
 
     @Override
-    public Object atualizar(Object objeto, int id) {
-        try{
+    public Object atualizar(Object objeto) {
+        try {
             this.contato = (Contato) objeto;
-            
+
             PreparedStatement ps = this.conexao.prepareStatement("update contatos set nome =?, telefone =?, email=? where id = ?");
             ps.setString(1, this.contato.getNome());
             ps.setString(2, this.contato.getTelofone());
             ps.setString(3, this.contato.getEmail());
-            ps.setInt(4, id);
-            
+            ps.setInt(4, contato.getId());
+
             ps.executeUpdate();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return this.contato;
     }
 
     @Override
-    public Iterator listar() {
+    public List listar() {
         List<Contato> contatos = new ArrayList<>();
         try {
 
@@ -105,13 +106,15 @@ public class ContatoPersistencia implements Crud {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                this.contato.setId(rs.getInt("id"));
-                this.contato.setNome(rs.getString("nome"));
-                this.contato.setEmail(rs.getString("email"));
-                this.contato.setTelofone(rs.getString("telefone"));
-                contatos.add(this.contato);
+                Contato contatoAdd = new Contato();
+
+                contatoAdd.setId(rs.getInt("id"));
+                contatoAdd.setNome(rs.getString("nome"));
+                contatoAdd.setEmail(rs.getString("email"));
+                contatoAdd.setTelofone(rs.getString("telefone"));
+                contatos.add(contatoAdd);
             }
-            return contatos.iterator();
+            return (List) contatos;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -119,4 +122,6 @@ public class ContatoPersistencia implements Crud {
         return null;
 
     }
+
+   
 }

@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Ricardo/Documents/Projetos/Dev%20Java/Contato/src/model/persistencia/ContatoPersistencia.java</file>
+            <file>file:/C:/Users/Ricardo/Documents/Projetos/Dev%20Java/Contato/src/view/Principal.java</file>
+            <file>file:/C:/Users/Ricardo/Documents/Projetos/Dev%20Java/Contato/src/model/persistencia/Crud.java</file>
+            <file>file:/C:/Users/Ricardo/Documents/Projetos/Dev%20Java/Contato/src/controller/ContatoController.java</file>
+            <file>file:/C:/Users/Ricardo/Documents/Projetos/Dev%20Java/Contato/src/model/entidade/Contato.java</file>
+        </group>
     </open-files>
 </project-private>
